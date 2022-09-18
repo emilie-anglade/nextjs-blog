@@ -4,7 +4,7 @@ import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 
-const name = 'Andy Anglade';
+const name = 'Andy the cat';
 export const siteTitle = 'Andy the cat Website';
 
 export default function Layout({children, home}) {
@@ -32,7 +32,7 @@ export default function Layout({children, home}) {
               priority
               src="/images/profile.jpg"
               className={utilStyles.borderCircle}
-              height={200}
+              height={220}
               width={180}
               alt={name}
             />

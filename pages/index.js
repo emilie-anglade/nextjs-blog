@@ -3,18 +3,20 @@ import Link from 'next/link';
 import Date from '../components/date';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, getCatData } from '../lib/posts';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
+  const catData = await getCatData();
   return {
     props: {
       allPostsData,
+      catData
     },
   };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, catData }) {
   return (
     <Layout home>
       <Head>
@@ -23,7 +25,16 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>Bonjour, je suis Andy le chat qui fait des selfies</p>
       </section>
-
+      <h1 className={utilStyles.headingLg}>Cat fact</h1>
+        <div className='flex items-center justify-between'>
+          <img
+            src="http://placekitten.com/g/100/100"
+            className={utilStyles.borderCircle}
+          />
+          <span className='ml-5'>
+            {catData.data}
+          </span>
+        </div>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
